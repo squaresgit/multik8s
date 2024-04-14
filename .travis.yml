@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  -docker build -t squaresdev/react-test -f ./client/Dockerfile ./client
+  - docker build -t squaresdev/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true squaresdev/react-test npm test -- --coverage
