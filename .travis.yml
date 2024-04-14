@@ -13,4 +13,13 @@ after_success:
   - docker build -t squaresdev/multi-client ./client
   - docker build -t squaresdev/multi-nginx ./nginx
   - docker build -t squaresdev/multi-server ./server
-  - docker build -t squaresdev/multi-nworker./worker
+  - docker build -t squaresdev/multi-worker ./worker
+
+  # now to log into Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Take the images and push them to docker hub
+  - docker push squaresdev/multi-client
+  - docker push squaresdev/multi-nginx 
+  - docker push squaresdev/multi-server
+  - docker push squaresdev/multi-worker
