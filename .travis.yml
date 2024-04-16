@@ -23,3 +23,15 @@ after_success:
   - docker push squaresdev/multi-nginx 
   - docker push squaresdev/multi-server
   - docker push squaresdev/multi-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: 'us-east-1'
+    app: 'multi-container'
+    env: 'Multi-container-env'
+    bucket_name: 'elasticbeanstalk-us-east-1-058264436538'
+    bucket_path: 'docker-multi'
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
